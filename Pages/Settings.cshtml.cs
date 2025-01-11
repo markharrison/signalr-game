@@ -48,15 +48,6 @@ namespace Pathinox.Pages
             return ValidationResult.Success!;
         }
 
-        public static string GetShortGUID()
-        {
-            return Convert.ToBase64String(Guid.NewGuid().ToByteArray())
-                .Replace("/", "_")
-                .Replace("+", "-")
-                .Substring(0, 22);
-        }
-
-
         private readonly string[] FirstNames = { "Fluffy", "Bubbles", "Snickers", "Wiggly", "Giggles", "Sprinkles", "Zippy", "Doodles", "Nibbles", "Whiskers", "Puddles", "Squiggles", "Waffles", "Pickles" };
         private readonly string[] LastNames = { "McSnuggle", "Wobblebottom", "Fuzzypants", "Ticklemonster", "Jellybean", "Snickerdoodle", "Wigglebutt", "Gigglepants", "McFluff", "Wobbleton", "Fuzzface", "Ticklesworth", "Jigglesworth", "Snugglekins" };
         private readonly Random Random = new Random();
@@ -77,7 +68,7 @@ namespace Pathinox.Pages
             var themeCookie = HttpContext.Request.Cookies["pxtheme"];
 
             nameCookie = (!string.IsNullOrEmpty(nameCookie)) ? nameCookie.Replace("%20", " ") : GetName();
-            uniqueIdCookie = (!string.IsNullOrEmpty(nameCookie)) ? uniqueIdCookie : Guid.NewGuid().ToString();
+            uniqueIdCookie = (!string.IsNullOrEmpty(uniqueIdCookie)) ? uniqueIdCookie : Guid.NewGuid().ToString();
 
             Name = (!string.IsNullOrEmpty(nameCookie)) ? nameCookie.Replace("%20", " ") : GetName();
             UniqueId = (!string.IsNullOrEmpty(nameCookie)) ? uniqueIdCookie : Guid.NewGuid().ToString();
